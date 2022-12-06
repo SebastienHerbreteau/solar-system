@@ -1,10 +1,18 @@
-<script setup>
+
+<script>
+import * as THREE from "three";
+import { OrbitControls } from "/node_modules/three/examples/jsm/controls/OrbitControls";
+
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(25, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({
   antialias: true
 });
+
+const controls = new OrbitControls(camera, renderer.domElement);
+camera.position.set(0, 20, 100);
+controls.update();
 
 renderer.setPixelRatio(2);
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -20,22 +28,22 @@ document.body.appendChild(renderer.domElement);
 // }
 
 var textureLoader = new THREE.TextureLoader();
-var saturnTexture = textureLoader.load('saturn.webp');
+var saturnTexture = textureLoader.load('/src/assets/img/saturn.webp');
 
 var textureLoader = new THREE.TextureLoader();
-var ringsTexture = textureLoader.load('rings.png');
+var ringsTexture = textureLoader.load('/src/assets/img/rings.png');
 
 var textureLoader = new THREE.TextureLoader();
-var sunTexture = textureLoader.load('sun.webp');
+var sunTexture = textureLoader.load('/src/assets/img/sun.webp');
 
 var textureLoader = new THREE.TextureLoader();
-var jupiterTexture = textureLoader.load('jupiter.webp');
+var jupiterTexture = textureLoader.load('/src/assets/img/jupiter.webp');
 
 var textureMarsLoader = new THREE.TextureLoader();
-var marsTexture = textureMarsLoader.load('mars.webp');
+var marsTexture = textureMarsLoader.load('/src/assets/img/mars.webp');
 
 var textureEarthLoader = new THREE.TextureLoader();
-var earthTexture = textureEarthLoader.load('earth.webp');
+var earthTexture = textureEarthLoader.load('/src/assets/img/earth.webp');
 
 // var fondLoader = new THREE.TextureLoader();
 // var fond = fondLoader.load('fond.jpg');
@@ -91,7 +99,7 @@ camera.position.z = 300;
 function animate() {
   requestAnimationFrame(animate);
 
-
+  controls.update();
   rings.rotation.x = 30;
   rings.rotation.y = 0.2;
   rings.rotation.z += 0.0005;
@@ -115,12 +123,14 @@ scene.add(light);
 </script>
 
 <template>
-  <h1>bonjour</h1>
+
 
 </template>
 
 <style scoped>
-.read-the-docs {
-  color: #888;
+canvas {
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 </style>
