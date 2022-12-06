@@ -5,7 +5,7 @@ import { OrbitControls } from "/node_modules/three/examples/jsm/controls/OrbitCo
 
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(25, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(25, window.innerWidth / window.innerHeight, 0.1, 10000);
 const renderer = new THREE.WebGLRenderer({
   antialias: true
 });
@@ -52,18 +52,16 @@ var earthTexture = textureEarthLoader.load('/src/assets/img/earth.webp');
 // renderer.setClearColor(0, 1, 43);
 
 var saturnGeometry = new THREE.SphereGeometry(16.85, 50, 50);
-var saturnMaterial = new THREE.MeshLambertMaterial({ map: saturnTexture });
+var saturnMaterial = new THREE.MeshStandardMaterial({ map: saturnTexture });
 var saturn = new THREE.Mesh(saturnGeometry, saturnMaterial);
-saturn.receiveShadow = true;
 scene.add(saturn);
 
 var ringsGeometry = new THREE.RingGeometry(18, 40, 100);
-var ringsMaterial = new THREE.MeshBasicMaterial({ map: ringsTexture });
+var ringsMaterial = new THREE.MeshLambertMaterial({ map: ringsTexture, side: THREE.DoubleSide });
 var rings = new THREE.Mesh(ringsGeometry, ringsMaterial);
-rings.castShadow = true;
 scene.add(rings);
 
-var sunGeometry = new THREE.SphereGeometry(196, 50, 80);
+var sunGeometry = new THREE.SphereGeometry(196, 50, 100);
 var sunMaterial = new THREE.MeshBasicMaterial({ map: sunTexture });
 var sun = new THREE.Mesh(sunGeometry, sunMaterial);
 scene.add(sun);
@@ -83,43 +81,45 @@ var earthMaterial = new THREE.MeshLambertMaterial({ map: earthTexture });
 var earth = new THREE.Mesh(earthGeometry, earthMaterial);
 scene.add(earth);
 
-earth.position.x = 40;
-mars.position.x = 25;
-jupiter.position.x = -10;
-sun.position.x = 320;
-rings.position.x = -70;
-saturn.position.x = -70;
+earth.position.x = -280;
+mars.position.x = -290;
+jupiter.position.x = -330;
+sun.position.x = 0;
+rings.position.x = -400;
+rings.rotation.x = 30;
+rings.rotation.y = 0.2;
+saturn.position.x = -400;
+
+camera.position.z = 500;
 
 
 
-camera.position.z = 300;
 
 
 
 function animate() {
-  requestAnimationFrame(animate);
+  requestAnimationFrame(animate)
 
   controls.update();
-  rings.rotation.x = 30;
-  rings.rotation.y = 0.2;
+
   rings.rotation.z += 0.0005;
-
-
-  saturn.rotation.y += 0.002;
   sun.rotation.y += 0.0003;
-  jupiter.rotation.y += 0.003;
-  mars.rotation.y += 0.005;
-  earth.rotation.y += 0.005;
+  jupiter.rotation.y += 0.002;
+  mars.rotation.y += 0.001;
+  earth.rotation.y += 0.003;
+
 
   renderer.render(scene, camera);
-
 };
 
 animate();
+
+
 var light = new THREE.DirectionalLight(0xffffff, 1.1);
 light.position.set(20, 0, 5);
 light.castShadow = true;
 scene.add(light);
+
 </script>
 
 <template>
