@@ -28,6 +28,12 @@ document.body.appendChild(renderer.domElement);
 // }
 
 var textureLoader = new THREE.TextureLoader();
+var neptuneTexture = textureLoader.load('/src/assets/img/neptune.webp');
+
+var textureLoader = new THREE.TextureLoader();
+var uranusTexture = textureLoader.load('/src/assets/img/uranus.webp');
+
+var textureLoader = new THREE.TextureLoader();
 var saturnTexture = textureLoader.load('/src/assets/img/saturn.webp');
 
 var textureLoader = new THREE.TextureLoader();
@@ -39,17 +45,35 @@ var sunTexture = textureLoader.load('/src/assets/img/sun.webp');
 var textureLoader = new THREE.TextureLoader();
 var jupiterTexture = textureLoader.load('/src/assets/img/jupiter.webp');
 
-var textureMarsLoader = new THREE.TextureLoader();
-var marsTexture = textureMarsLoader.load('/src/assets/img/mars.webp');
+var textureLoader = new THREE.TextureLoader();
+var marsTexture = textureLoader.load('/src/assets/img/mars.webp');
 
-var textureEarthLoader = new THREE.TextureLoader();
-var earthTexture = textureEarthLoader.load('/src/assets/img/earth.webp');
+var textureLoader = new THREE.TextureLoader();
+var earthTexture = textureLoader.load('/src/assets/img/earth.webp');
+
+var textureLoader = new THREE.TextureLoader();
+var venusTexture = textureLoader.load('/src/assets/img/venus.webp');
+
+var textureLoader = new THREE.TextureLoader();
+var mercuryTexture = textureLoader.load('/src/assets/img/mercury.webp');
+
+
 
 // var fondLoader = new THREE.TextureLoader();
 // var fond = fondLoader.load('fond.jpg');
 // scene.background = fond;
 
 // renderer.setClearColor(0, 1, 43);
+
+var neptuneGeometry = new THREE.SphereGeometry(4.66, 50, 50);
+var neptuneMaterial = new THREE.MeshStandardMaterial({ map: neptuneTexture });
+var neptune = new THREE.Mesh(neptuneGeometry, neptuneMaterial);
+scene.add(neptune);
+
+var uranusGeometry = new THREE.SphereGeometry(4.94, 50, 50);
+var uranusMaterial = new THREE.MeshStandardMaterial({ map: uranusTexture });
+var uranus = new THREE.Mesh(uranusGeometry, uranusMaterial);
+scene.add(uranus);
 
 var saturnGeometry = new THREE.SphereGeometry(16.85, 50, 50);
 var saturnMaterial = new THREE.MeshStandardMaterial({ map: saturnTexture });
@@ -60,11 +84,6 @@ var ringsGeometry = new THREE.RingGeometry(18, 40, 100);
 var ringsMaterial = new THREE.MeshLambertMaterial({ map: ringsTexture, side: THREE.DoubleSide });
 var rings = new THREE.Mesh(ringsGeometry, ringsMaterial);
 scene.add(rings);
-
-var sunGeometry = new THREE.SphereGeometry(196, 50, 100);
-var sunMaterial = new THREE.MeshBasicMaterial({ map: sunTexture });
-var sun = new THREE.Mesh(sunGeometry, sunMaterial);
-scene.add(sun);
 
 var jupiterGeometry = new THREE.SphereGeometry(20, 50, 50);
 var jupiterMaterial = new THREE.MeshLambertMaterial({ map: jupiterTexture });
@@ -81,6 +100,24 @@ var earthMaterial = new THREE.MeshLambertMaterial({ map: earthTexture });
 var earth = new THREE.Mesh(earthGeometry, earthMaterial);
 scene.add(earth);
 
+var venusGeometry = new THREE.SphereGeometry(1.04, 50, 50);
+var venusMaterial = new THREE.MeshLambertMaterial({ map: venusTexture });
+var venus = new THREE.Mesh(venusGeometry, venusMaterial);
+scene.add(venus);
+
+var mercuryGeometry = new THREE.SphereGeometry(0.41, 50, 50);
+var mercuryMaterial = new THREE.MeshLambertMaterial({ map: mercuryTexture });
+var mercury = new THREE.Mesh(mercuryGeometry, mercuryMaterial);
+scene.add(mercury);
+
+
+var sunGeometry = new THREE.SphereGeometry(196, 50, 100);
+var sunMaterial = new THREE.MeshBasicMaterial({ map: sunTexture });
+var sun = new THREE.Mesh(sunGeometry, sunMaterial);
+scene.add(sun);
+
+mercury.position.x = -260;
+venus.position.x = -270;
 earth.position.x = -280;
 mars.position.x = -290;
 jupiter.position.x = -330;
@@ -89,6 +126,8 @@ rings.position.x = -400;
 rings.rotation.x = 30;
 rings.rotation.y = 0.2;
 saturn.position.x = -400;
+uranus.position.x = -450;
+neptune.position.x = -500;
 
 camera.position.z = 500;
 
