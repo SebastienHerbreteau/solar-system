@@ -1,0 +1,11 @@
+.increase{
+position: absolute;
+top: 5%;
+left: 43%;
+}
+
+.decrease{
+position: absolute;
+top: 5%;
+right: 43%;
+}
