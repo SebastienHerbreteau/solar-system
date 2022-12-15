@@ -1,7 +1,9 @@
 # Vue 3 + Vite
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Reproduction le système solaire - threeJS
 
-## Recommended IDE Setup
+- Je débute avec vue et three
+- Demande beaucoup de ressources.
+- Les différents astres sont à l'échelle.
+- Les vitesses, sens, angles de rotation sont pour le moment faux, ainsi que les distances.
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
